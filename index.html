@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -49,23 +50,6 @@
             outline: none;
         }
 
-        button {
-            margin-top: 15px;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 10px;
-            background-color: #66a6ff;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #89f7fe;
-            transform: scale(1.05);
-        }
-
         #output {
             margin-top: 20px;
             padding: 15px;
@@ -92,7 +76,6 @@
     <div class="container">
         <h1>zxty fordító</h1>
         <textarea id="inputText" placeholder="Írj ide egy Zxty szót..."></textarea>
-        <button id="translateBtn">Fordítás</button>
         <div id="output"></div>
         <p class="note">Csak Zxty szavak fordítása.</p>
     </div>
@@ -103,23 +86,24 @@
             "FA": "focista",
             "FAF": "focistafeleség",
             "PLANTY": "növény",
-            "SMINKY": "pajorka",
+            "SMINKY": "pajorka, (összes lány)",
             "XTRA KRAZY": "legjobb dolog",
             "TWIZZ WU": "zxty mestere",
             "CHONKA SECRET": "kulcs a lányokhoz"
         };
 
-        document.getElementById('translateBtn').addEventListener('click', () => {
-            const input = document.getElementById('inputText').value.trim().toUpperCase();
-            let output = "";
+        const inputText = document.getElementById('inputText');
+        const output = document.getElementById('output');
 
-            if(dictionary[input]) {
-                output = dictionary[input];
+        inputText.addEventListener('input', () => {
+            const text = inputText.value.trim().toUpperCase();
+            if(dictionary[text]) {
+                output.textContent = dictionary[text];
+            } else if(text === "") {
+                output.textContent = "";
             } else {
-                output = "Nincs fordítás erre a szóra.";
+                output.textContent = "Nincs fordítás erre a szóra.";
             }
-
-            document.getElementById('output').textContent = output;
         });
     </script>
 </body>
